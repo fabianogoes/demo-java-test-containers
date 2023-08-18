@@ -1,5 +1,7 @@
 package com.demo.customer;
 
+import com.demo.customer.dto.CustomerCreationDTO;
+import com.demo.customer.dto.CustomerResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
