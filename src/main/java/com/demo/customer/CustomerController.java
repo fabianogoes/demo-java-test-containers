@@ -21,7 +21,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    ResponseEntity<Void> create(@RequestBody CustomerCreationDTO payload, UriComponentsBuilder ucb) {
+    ResponseEntity<CustomerResponseDTO> create(@RequestBody CustomerCreationDTO payload, UriComponentsBuilder ucb) {
         Customer customer = service.create(payload.name(), payload.document());
         URI uri = ucb.path("customers/{id}")
                 .buildAndExpand(customer.getId())
@@ -32,12 +32,9 @@ public class CustomerController {
 
     @GetMapping("{id}")
     ResponseEntity<CustomerResponseDTO> read(@PathVariable UUID id) {
-        Customer customer = service.read(id);
-
-        if (customer == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        return ResponseEntity.ok(CustomerConvert.toResponse(customer));
+        return service.read(id)
+                .map(customer -> ResponseEntity.ok(CustomerConvert.toResponse(customer)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping
@@ -51,9 +48,6 @@ public class CustomerController {
 
     @PutMapping("{id}")
     ResponseEntity<Void> update(@RequestBody CustomerCreationDTO payload, @PathVariable UUID id) {
-        if (service.read(id) == null)
-            return ResponseEntity.notFound().build();
-
         service.update(id, payload.name(), payload.document());
         return ResponseEntity.noContent().build();
     }
@@ -61,9 +55,6 @@ public class CustomerController {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     ResponseEntity<Void>  delete(@PathVariable UUID id) {
-        if (service.read(id) == null)
-            return ResponseEntity.notFound().build();
-
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

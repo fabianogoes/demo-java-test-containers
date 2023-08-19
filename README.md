@@ -28,4 +28,5 @@
   - [ ] Inferência de variáveis
   - [ ] Switch expression
   - [ ] HTTP 2 Client Async
+- Usar uma abordagem mais funcional
 - Usar a lib `TestContainers` para gerenciar os Containers Docker durante os Testes Integrados. 
