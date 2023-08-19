@@ -1,11 +1,7 @@
-package com.demo;
+package com.demo.customer;
 
-import com.demo.customer.Customer;
-import com.demo.customer.CustomerRepository;
-import com.demo.customer.CustomerService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +15,7 @@ import java.util.UUID;
 
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ApplicationIntegrationTest {
+public class CustomerIntegrationTest {
 
     @Container
     @ServiceConnection
@@ -34,16 +30,6 @@ public class ApplicationIntegrationTest {
     @AfterEach
     void cleanUp() {
         repository.deleteAll();
-//        mongoDBContainer.
-    }
-
-    @BeforeEach
-    void before() {
-//        mongoDBContainer.start();
-    }
-
-    @Test
-    void contextLoads() {
     }
 
     @Test
