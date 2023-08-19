@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.demo</groupId>
-	<artifactId>demo-java-test-containers</artifactId>
+	<artifactId>poc-spring-apirest-java-testcontainers</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo-java-test-containers</name>
+	<name>poc-spring-apirest-java-testcontainers</name>
 	<description>Demo project for Spring Boot using Test Containers</description>
 	<properties>
 		<java.version>17</java.version>
